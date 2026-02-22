@@ -1,20 +1,18 @@
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import BrainDump from "./pages/BrainDump";
 import Synthesize from "./pages/Synthesize";
-import ConstellationBackground from "./components/ConstellationBackground";
-function App() {
+import LoginPage from "./pages/LoginPage";
+import { useContract } from "./ContractContext";
+
+export default function App() {
+  const { contract } = useContract();
+
   return (
-    <ConstellationBackground>
-      <Routes>
-        <Route path="/" element={<BrainDump />} />
-        <Route path="/synthesize" element={<Synthesize />} />
-      </Routes>
-    </ConstellationBackground>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/braindump" element={contract ? <BrainDump /> : <Navigate to="/" />} />
+      <Route path="/synthesize" element={contract ? <Synthesize /> : <Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
-
-export default App;
-
-// The App component defines the routes for the application. 
-// It uses the Routes and Route components from react-router-dom to specify which component should be rendered for each path. 
-// The "/" path renders the BrainDump component, and the "/synthesize" path renders the Synthesize component.
