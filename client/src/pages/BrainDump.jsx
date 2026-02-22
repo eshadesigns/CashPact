@@ -144,8 +144,8 @@ function BrainDump() {
           pointerEvents: "none",
         }}
       >
-        <div style={{ fontSize: 44, fontWeight: 800, letterSpacing: "0.04em" }}>IdeaNet</div>
-        <div style={{ opacity: 0.75, marginTop: 6 }}>{loading ? "Loading..." : "Think. Connect. Act."}</div>
+        <div style={{ fontSize: 44, fontWeight: 800, letterSpacing: "0.04em" }}>CashPact</div>
+        <div style={{ opacity: 0.75, marginTop: 6 }}>{loading ? "Loading..." : "Progress. Partnership. Payoff."}</div>
       </div>
 
       <div
@@ -233,7 +233,7 @@ function BrainDump() {
           <input
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Type an idea..."
+            placeholder="Type a goal..."
             style={{
               flex: 1,
               border: "none",
@@ -258,7 +258,7 @@ function BrainDump() {
             className="brain-btn brain-btn-primary"
             style={pillBtn(true, ideas.length === 0)}
           >
-            Synthesize \u2192
+            Minimize!
           </button>
         </div>
       </div>

@@ -71,7 +71,7 @@ export default function LoginPage() {
       <div style={bgGrid} />
 
       <div style={cardStyle}>
-        <p style={kickerStyle}>IdeaNet Contract Setup</p>
+        <p style={kickerStyle}>CashPact Contract Setup</p>
         <h1 style={titleStyle}>Lock in your daily accountability pact</h1>
         <p style={subtitleStyle}>
           Set your teammate, required daily completions, and demo stake. If you miss your target,
@@ -90,7 +90,7 @@ export default function LoginPage() {
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="vedhi"
+              placeholder="for me"
               style={inputStyle}
             />
           </label>
@@ -100,7 +100,7 @@ export default function LoginPage() {
             <input
               value={friendUsername}
               onChange={(e) => setFriendUsername(e.target.value)}
-              placeholder="esha"
+              placeholder="for your accountability partner"
               style={inputStyle}
             />
           </label>
@@ -127,7 +127,7 @@ export default function LoginPage() {
           {error && <div style={errorStyle}>{error}</div>}
 
           <button disabled={loading} style={buttonStyle}>
-            {loading ? "Creating contract..." : "Continue to BrainDump"}
+            {loading ? "Creating contract..." : "Continue to Goal Dump"}
           </button>
         </form>
       </div>

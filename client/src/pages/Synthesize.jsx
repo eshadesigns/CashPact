@@ -245,8 +245,8 @@ function Synthesize() {
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <h1 style={{ marginBottom: 6 }}>Synthesize</h1>
-        <p style={{ opacity: 0.75, marginTop: 0 }}>Here is your execution plan.</p>
+        <h1 style={{ marginBottom: 6 }}>Microtasking</h1>
+        <p style={{ opacity: 0.75, marginTop: 0 }}>Here are your actionable items.</p>
 
         {contract && (
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, marginTop: 16 }}>
