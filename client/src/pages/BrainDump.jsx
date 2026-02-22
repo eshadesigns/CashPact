@@ -221,8 +221,85 @@ function BrainDump() {
             50% { transform: translate(-50%, -50%) translate(var(--drift-x), var(--drift-y)); }
             100% { transform: translate(-50%, -50%) translate(0px, 0px); }
           }
+
+          @keyframes starTwinkle {
+            0% { opacity: 0.32; }
+            50% { opacity: 0.85; }
+            100% { opacity: 0.32; }
+          }
+
+          @keyframes starDrift {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+          }
+
+          @keyframes nebulaPulse {
+            0% { opacity: 0.22; transform: scale(1); }
+            50% { opacity: 0.34; transform: scale(1.04); }
+            100% { opacity: 0.22; transform: scale(1); }
+          }
+
+          @keyframes liquidShine {
+            0% { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+            18% { opacity: 0.2; }
+            55% { opacity: 0.34; }
+            100% { transform: translateX(170%) skewX(-18deg); opacity: 0; }
+          }
         `}
       </style>
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+          backgroundImage:
+            "radial-gradient(2px 2px at 8% 14%, rgba(205,240,255,0.8), transparent)," +
+            "radial-gradient(1.5px 1.5px at 18% 62%, rgba(195,220,255,0.75), transparent)," +
+            "radial-gradient(2px 2px at 34% 26%, rgba(165,238,215,0.7), transparent)," +
+            "radial-gradient(1.4px 1.4px at 47% 73%, rgba(175,214,255,0.65), transparent)," +
+            "radial-gradient(1.8px 1.8px at 58% 18%, rgba(195,220,255,0.7), transparent)," +
+            "radial-gradient(2px 2px at 73% 44%, rgba(165,238,215,0.65), transparent)," +
+            "radial-gradient(1.6px 1.6px at 86% 68%, rgba(205,240,255,0.8), transparent)," +
+            "radial-gradient(1.6px 1.6px at 92% 24%, rgba(185,210,255,0.72), transparent)",
+          animation: "starTwinkle 4.4s ease-in-out infinite, starDrift 15s ease-in-out infinite",
+        }}
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+          backgroundImage:
+            "radial-gradient(1px 1px at 12% 35%, rgba(210,240,255,0.7), transparent)," +
+            "radial-gradient(1px 1px at 24% 82%, rgba(180,220,255,0.65), transparent)," +
+            "radial-gradient(1px 1px at 39% 11%, rgba(160,235,215,0.6), transparent)," +
+            "radial-gradient(1px 1px at 52% 57%, rgba(175,214,255,0.6), transparent)," +
+            "radial-gradient(1px 1px at 66% 86%, rgba(200,236,255,0.6), transparent)," +
+            "radial-gradient(1px 1px at 79% 30%, rgba(160,235,215,0.62), transparent)," +
+            "radial-gradient(1px 1px at 88% 52%, rgba(210,240,255,0.65), transparent)",
+          animation: "starTwinkle 6.2s ease-in-out infinite reverse",
+          opacity: 0.8,
+        }}
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          inset: "-4%",
+          zIndex: 0,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(520px 340px at 16% 24%, rgba(122, 224, 184, 0.18), transparent 60%)," +
+            "radial-gradient(460px 300px at 78% 74%, rgba(129, 89, 222, 0.2), transparent 62%)",
+          filter: "blur(14px)",
+          animation: "nebulaPulse 10s ease-in-out infinite",
+        }}
+      />
 
       <button
         onClick={logout}
@@ -319,18 +396,38 @@ function BrainDump() {
                 animation: `bubbleDrift ${driftDuration}s ease-in-out ${driftDelay}s infinite`,
                 width: placement.width,
                 minHeight: placement.height,
-                padding: "10px 12px",
+                padding: "7px 12px",
                 borderRadius: 18,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 textAlign: "center",
                 whiteSpace: "normal",
                 overflowWrap: "anywhere",
                 lineHeight: `${BUBBLE_LINE_HEIGHT}px`,
-                background: "rgba(150,120,255,0.16)",
-                border: "1px solid rgba(255,255,255,0.18)",
+                background:
+                  "linear-gradient(155deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05) 45%, rgba(110,95,190,0.16) 100%)",
+                border: "1px solid rgba(255,255,255,0.24)",
                 zIndex: 1,
-                boxShadow: "0 0 18px rgba(103,77,255,0.45), 0 0 40px rgba(0,198,255,0.18)",
+                backdropFilter: "blur(14px) saturate(135%)",
+                WebkitBackdropFilter: "blur(14px) saturate(135%)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,0.36), inset 0 -10px 18px rgba(67,44,118,0.18), 0 0 18px rgba(103,77,255,0.38), 0 0 40px rgba(0,198,255,0.14)",
+                overflow: "hidden",
               }}
             >
+              <span
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  inset: "-20% auto -20% -35%",
+                  width: "42%",
+                  background: "linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.42), rgba(255,255,255,0))",
+                  transform: "skewX(-18deg)",
+                  animation: "liquidShine 7.8s ease-in-out infinite",
+                  pointerEvents: "none",
+                }}
+              />
               {idea.text}
             </div>
           );
@@ -352,18 +449,34 @@ function BrainDump() {
         <div
           style={{
             width: "min(900px, 94vw)",
-            background: "rgba(255,255,255,0.08)",
-            border: "1px solid rgba(255,255,255,0.16)",
+            background:
+              "linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.06) 48%, rgba(76,60,133,0.2) 100%)",
+            border: "1px solid rgba(255,255,255,0.22)",
             borderRadius: 999,
             padding: 10,
             display: "flex",
             gap: 10,
             alignItems: "center",
-            backdropFilter: "blur(12px)",
-            boxShadow: "0 10px 35px rgba(0,0,0,0.35)",
+            backdropFilter: "blur(14px) saturate(130%)",
+            WebkitBackdropFilter: "blur(14px) saturate(130%)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.35), 0 10px 35px rgba(0,0,0,0.35)",
             pointerEvents: "auto",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: "-20% auto -20% -25%",
+              width: "28%",
+              background: "linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.34), rgba(255,255,255,0))",
+              transform: "skewX(-18deg)",
+              animation: "liquidShine 9s ease-in-out infinite",
+              pointerEvents: "none",
+            }}
+          />
           <input
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -418,14 +531,14 @@ function BrainDump() {
 
 function estimateBubbleSize(text) {
   const safeText = (text || "").trim() || "Untitled";
-  const avgCharWidth = 2.2;
+  const avgCharWidth = 7.2;
   const longestWord = safeText.split(/\s+/).reduce((max, word) => Math.max(max, word.length), 0);
   const longestWordWidth = longestWord * avgCharWidth;
   const targetWidth = Math.min(BUBBLE_MAX_WIDTH, Math.max(BUBBLE_MIN_WIDTH, longestWordWidth + BUBBLE_PADDING_X));
 
   const charsPerLine = Math.max(10, Math.floor((targetWidth - BUBBLE_PADDING_X) / avgCharWidth));
   const lineCount = Math.max(1, Math.ceil(safeText.length / charsPerLine));
-  const height = lineCount * BUBBLE_LINE_HEIGHT + BUBBLE_PADDING_Y;
+  const height = lineCount * BUBBLE_LINE_HEIGHT + 8;
 
   return {
     width: targetWidth,
